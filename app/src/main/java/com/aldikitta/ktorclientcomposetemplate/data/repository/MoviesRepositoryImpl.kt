@@ -26,7 +26,6 @@ class MoviesRepositoryImpl @Inject constructor(
             moviesApi = moviesApi,
             language = contentLanguage.languageCode,
             region = contentLanguage.region
-//            movieResponseParam = moviesApi::getPopularMovies
         )
     }.flow.flowOn(defaultDispatcher)
 }

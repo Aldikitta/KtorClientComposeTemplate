@@ -15,7 +15,6 @@ import kotlin.reflect.KSuspendFunction3
 class MovieResponsePagingDataSource(
     private val language: String = ContentLanguage.default.languageCode,
     private val region: String = ContentLanguage.default.region,
-//    private inline val movieResponseParam: suspend (Int, String, String) -> MovieResponse,
     private val moviesApi: MoviesApi
 ) : PagingSource<Int, Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -28,7 +27,6 @@ class MovieResponsePagingDataSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
             val nextPage = params.key ?: 1
-//            val movieResponse = movieResponseParam(nextPage, language, region)
             val movieResponse = moviesApi.getPopularMovies(nextPage, language, region)
 
             val currentPage = movieResponse.page
