@@ -97,6 +97,9 @@ fun MovplayPresentableGridSection(
                             )
                         }
                     }
+                    loadState.append is LoadState.Error -> {
+
+                    }
                 }
             }
         }

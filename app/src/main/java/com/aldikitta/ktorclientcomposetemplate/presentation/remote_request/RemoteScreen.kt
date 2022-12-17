@@ -5,13 +5,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.pullRefreshIndicatorTransform
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -21,6 +27,10 @@ import com.aldikitta.ktorclientcomposetemplate.R
 import com.aldikitta.ktorclientcomposetemplate.data.model.Movie
 import com.aldikitta.ktorclientcomposetemplate.presentation.common.MovplayPresentableGridSection
 import com.aldikitta.ktorclientcomposetemplate.ui.theme.spacing
+import com.aldikitta.ktorclientcomposetemplate.util.isAnyRefreshing
+import com.aldikitta.ktorclientcomposetemplate.util.refreshAll
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
 fun RemoteScreen(
@@ -36,7 +46,7 @@ fun RemoteScreen(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun RemoteScreenContent(
     uiState: RemoteScreenUIState,
@@ -46,7 +56,26 @@ fun RemoteScreenContent(
 
     val gridState = rememberLazyGridState()
 
-    Box(modifier = Modifier.fillMaxSize()){
+    val isRefreshing by derivedStateOf {
+        listOf(
+            popularMovies
+        ).isAnyRefreshing()
+    }
+
+    val swipeRefreshState = rememberPullRefreshState(
+        isRefreshing,
+        onRefresh = {
+            listOf(
+                popularMovies
+            ).refreshAll()
+        }
+    )
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .pullRefresh(state = swipeRefreshState)
+    ) {
         Column(modifier = Modifier.fillMaxSize()) {
             TopAppBar(
                 title = {
@@ -61,18 +90,25 @@ fun RemoteScreenContent(
                     }
                 }
             )
-            MovplayPresentableGridSection(
-                modifier = Modifier.fillMaxSize(),
-                state = popularMovies,
-                gridState = gridState,
-                contentPadding = PaddingValues(
-                    top = MaterialTheme.spacing.medium,
-                    start = MaterialTheme.spacing.small,
-                    end = MaterialTheme.spacing.small,
-                    bottom = MaterialTheme.spacing.large
-                ),
-            )
+            if (!isRefreshing) {
+                MovplayPresentableGridSection(
+                    modifier = Modifier.fillMaxSize(),
+                    state = popularMovies,
+                    gridState = gridState,
+                    contentPadding = PaddingValues(
+                        top = MaterialTheme.spacing.medium,
+                        start = MaterialTheme.spacing.small,
+                        end = MaterialTheme.spacing.small,
+                        bottom = MaterialTheme.spacing.large
+                    ),
+                )
+            }
         }
+        PullRefreshIndicator(
+            refreshing = isRefreshing,
+            state = swipeRefreshState,
+            Modifier.align(Alignment.TopCenter),
+            scale = true
+        )
     }
-
 }
