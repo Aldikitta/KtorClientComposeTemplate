@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.aldikitta.ktorclientcomposetemplate.presentation.local_request.LocalScreen
-import com.aldikitta.ktorclientcomposetemplate.presentation.remote_request.RemoteScreen
 import com.aldikitta.ktorclientcomposetemplate.presentation.root_screen.RootScreen
+import com.aldikitta.local_request.LocalScreen
+import com.aldikitta.remote_request.RemoteScreen
 
 @Composable
 fun Navigation() {
