@@ -1,4 +1,4 @@
-package com.aldikitta.data.paging
+package com.aldikitta.data.paging.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

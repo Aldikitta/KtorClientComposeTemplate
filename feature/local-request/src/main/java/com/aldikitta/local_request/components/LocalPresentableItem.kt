@@ -1,4 +1,4 @@
-package com.aldikitta.ui
+package com.aldikitta.local_request.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.aspectRatio
@@ -11,16 +11,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.GraphicsLayerScope
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
+import com.aldikitta.data.model.PresentableItemLocalState
 import com.aldikitta.data.model.PresentableItemState
 import com.aldikitta.ui.response.ErrorPresentableItem
 import com.aldikitta.ui.response.LoadingPresentableItem
-import com.aldikitta.ui.response.ResultPresentableItem
 import com.aldikitta.ui.theme.Size
 import com.aldikitta.ui.theme.sizes
 
 @Composable
-fun MovplayPresentableItem(
-    presentableState: PresentableItemState,
+fun LocalPresentableItem(
+    presentableState: PresentableItemLocalState,
     modifier: Modifier = Modifier,
     size: Size = MaterialTheme.sizes.presentableItemSmall,
     selected: Boolean = false,
@@ -42,18 +42,18 @@ fun MovplayPresentableItem(
         ) else null
     ) {
         when (presentableState) {
-            is PresentableItemState.Loading -> {
+            is PresentableItemLocalState.Loading -> {
                 LoadingPresentableItem(
                     modifier = Modifier.fillMaxSize()
                 )
             }
-            is PresentableItemState.Error -> {
+            is PresentableItemLocalState.Error -> {
                 ErrorPresentableItem(
                     modifier = Modifier.fillMaxSize()
                 )
             }
-            is PresentableItemState.Result -> {
-                ResultPresentableItem(
+            is PresentableItemLocalState.Result -> {
+                LocalResultMovieItem(
                     modifier = Modifier.fillMaxSize(),
                     presentable = presentableState.movie,
                     showTitle = showTitle,

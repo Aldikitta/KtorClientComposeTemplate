@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.aldikitta.ui.MovplayPresentableGridSection
+import com.aldikitta.remote_request.components.RemotePresentableSection
 import com.aldikitta.ui.theme.spacing
 import com.aldikitta.ui.util.isAnyRefreshing
 import com.aldikitta.ui.util.refreshAll
@@ -88,7 +88,7 @@ fun RemoteScreenContent(
                 }
             )
             if (!isRefreshing) {
-                MovplayPresentableGridSection(
+                RemotePresentableSection(
                     modifier = Modifier.fillMaxSize(),
                     state = popularMovies,
                     gridState = gridState,

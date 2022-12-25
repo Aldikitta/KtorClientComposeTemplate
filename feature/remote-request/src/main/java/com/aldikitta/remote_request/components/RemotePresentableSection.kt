@@ -1,4 +1,4 @@
-package com.aldikitta.ui
+package com.aldikitta.remote_request.components
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.*
@@ -22,6 +22,8 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.aldikitta.data.model.Movie
 import com.aldikitta.data.model.PresentableItemState
+import com.aldikitta.ui.MovplayScrollToTopButton
+import com.aldikitta.ui.gridVerticalScrollBar
 import com.aldikitta.ui.theme.spacing
 import com.aldikitta.ui.util.isScrollingTowardsStart
 import com.aldikitta.ui.util.items
@@ -30,7 +32,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalAnimationApi::class, ExperimentalFoundationApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun MovplayPresentableGridSection(
+fun RemotePresentableSection(
     state: LazyPagingItems<out Movie>,
     modifier: Modifier = Modifier,
     gridState: LazyGridState = rememberLazyGridState(),
@@ -65,7 +67,7 @@ fun MovplayPresentableGridSection(
         ) {
             items(state) { presentable ->
                 presentable?.let {
-                    MovplayPresentableItem(
+                    RemotePresentableItem(
                         presentableState = PresentableItemState.Result(it),
                         onClick = { onPresentableClick(it.id) }
                     )
@@ -75,28 +77,33 @@ fun MovplayPresentableGridSection(
                 when {
                     loadState.refresh is LoadState.Loading && showRefreshLoading -> {
                         items(12) {
-                            MovplayPresentableItem(
+                            RemotePresentableItem(
                                 presentableState = PresentableItemState.Loading
+                            )
+                        }
+                    }
+                    loadState.refresh is LoadState.Error ->{
+                        items(count = 3) {
+                            RemotePresentableItem(
+                                presentableState = PresentableItemState.Error
                             )
                         }
                     }
                     loadState.append is LoadState.Loading -> {
                         items(3) {
-                            MovplayPresentableItem(
+                            RemotePresentableItem(
                                 presentableState = PresentableItemState.Loading
                             )
                         }
                     }
                     loadState.append is LoadState.Error -> {
                         items(count = 3) {
-                            MovplayPresentableItem(
+                            RemotePresentableItem(
                                 presentableState = PresentableItemState.Error
                             )
                         }
                     }
-                    loadState.refresh is LoadState.Error ->{
-                        //ca;; something
-                    }
+
                 }
             }
         }

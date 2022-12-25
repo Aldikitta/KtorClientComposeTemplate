@@ -1,6 +1,7 @@
-package com.aldikitta.ui.response
+package com.aldikitta.local_request.components
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -18,15 +19,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.aldikitta.data.local.model.MovieEntity
 import com.aldikitta.data.model.Movie
+import com.aldikitta.ui.response.NoPhotoPresentableItem
 import com.aldikitta.ui.theme.spacing
 
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun ResultPresentableItem(
-    presentable: Movie,
+fun LocalResultMovieItem(
+    presentable: MovieEntity,
     modifier: Modifier = Modifier,
     showTitle: Boolean = true,
     onClick: (() -> Unit)? = null
@@ -47,7 +51,7 @@ fun ResultPresentableItem(
             ) {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(presentable.fullPosterPath)
+                        .data(presentable.fullLocalPosterPath)
                         .crossfade(true)
                         .build(),
                     contentDescription = presentable.title,

@@ -27,4 +27,10 @@ dependencies {
 
     //Dagger-Hilt
     implementation(libs.javax.inject.javax.inject)
+
+    //Room
+    implementation(libs.androidx.room.room.runtime)
+    implementation(libs.androidx.room.room.ktx)
+    implementation(libs.androidx.room.room.paging)
+    kapt(libs.androidx.room.room.compiler)
 }
