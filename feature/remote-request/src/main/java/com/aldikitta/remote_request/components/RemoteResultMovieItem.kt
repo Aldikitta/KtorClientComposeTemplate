@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.aldikitta.data.model.Movie
+import com.aldikitta.data.model.PresentableMovie
 import com.aldikitta.ui.response.NoPhotoPresentableItem
 import com.aldikitta.ui.theme.spacing
 
@@ -27,7 +28,7 @@ import com.aldikitta.ui.theme.spacing
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun RemoteResultMovieItem(
-    presentable: Movie,
+    presentable: PresentableMovie,
     modifier: Modifier = Modifier,
     showTitle: Boolean = true,
     onClick: (() -> Unit)? = null

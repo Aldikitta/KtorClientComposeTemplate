@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.aldikitta.data.model.Movie
-import com.aldikitta.data.model.PresentableItemState
+import com.aldikitta.remote_request.PresentableRemoteItemState
 import com.aldikitta.ui.MovplayScrollToTopButton
 import com.aldikitta.ui.gridVerticalScrollBar
 import com.aldikitta.ui.theme.spacing
@@ -68,7 +68,7 @@ fun RemotePresentableSection(
             items(state) { presentable ->
                 presentable?.let {
                     RemotePresentableItem(
-                        presentableState = PresentableItemState.Result(it),
+                        presentableState = PresentableRemoteItemState.Result(it),
                         onClick = { onPresentableClick(it.id) }
                     )
                 }
@@ -78,28 +78,28 @@ fun RemotePresentableSection(
                     loadState.refresh is LoadState.Loading && showRefreshLoading -> {
                         items(12) {
                             RemotePresentableItem(
-                                presentableState = PresentableItemState.Loading
+                                presentableState = PresentableRemoteItemState.Loading
                             )
                         }
                     }
                     loadState.refresh is LoadState.Error ->{
                         items(count = 3) {
                             RemotePresentableItem(
-                                presentableState = PresentableItemState.Error
+                                presentableState = PresentableRemoteItemState.Error
                             )
                         }
                     }
                     loadState.append is LoadState.Loading -> {
                         items(3) {
                             RemotePresentableItem(
-                                presentableState = PresentableItemState.Loading
+                                presentableState = PresentableRemoteItemState.Loading
                             )
                         }
                     }
                     loadState.append is LoadState.Error -> {
                         items(count = 3) {
                             RemotePresentableItem(
-                                presentableState = PresentableItemState.Error
+                                presentableState = PresentableRemoteItemState.Error
                             )
                         }
                     }

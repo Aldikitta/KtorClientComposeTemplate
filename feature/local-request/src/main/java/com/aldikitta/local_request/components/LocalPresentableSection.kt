@@ -21,9 +21,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.aldikitta.data.local.model.MovieEntity
-import com.aldikitta.data.model.Movie
-import com.aldikitta.data.model.PresentableItemLocalState
-import com.aldikitta.data.model.PresentableItemState
+import com.aldikitta.local_request.PresentableLocalItemState
 import com.aldikitta.ui.MovplayScrollToTopButton
 import com.aldikitta.ui.gridVerticalScrollBar
 import com.aldikitta.ui.theme.spacing
@@ -70,7 +68,7 @@ fun LocalPresentableSection(
             items(state) { presentable ->
                 presentable?.let {
                     LocalPresentableItem(
-                        presentableState = PresentableItemLocalState.Result(it),
+                        presentableState = PresentableLocalItemState.Result(it),
                         onClick = { onPresentableClick(it.id) }
                     )
                 }
@@ -80,21 +78,21 @@ fun LocalPresentableSection(
                     loadState.refresh is LoadState.Loading && showRefreshLoading -> {
                         items(12) {
                             LocalPresentableItem(
-                                presentableState = PresentableItemLocalState.Loading
+                                presentableState = PresentableLocalItemState.Loading
                             )
                         }
                     }
                     loadState.append is LoadState.Loading -> {
                         items(3) {
                             LocalPresentableItem(
-                                presentableState = PresentableItemLocalState.Loading
+                                presentableState = PresentableLocalItemState.Loading
                             )
                         }
                     }
                     loadState.append is LoadState.Error -> {
                         items(count = 3) {
                             LocalPresentableItem(
-                                presentableState = PresentableItemLocalState.Error
+                                presentableState = PresentableLocalItemState.Error
                             )
                         }
                     }
