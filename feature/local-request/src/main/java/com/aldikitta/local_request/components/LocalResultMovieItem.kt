@@ -23,6 +23,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.aldikitta.data.local.model.MovieEntity
 import com.aldikitta.data.model.Movie
+import com.aldikitta.data.model.PresentableMovie
 import com.aldikitta.ui.response.NoPhotoPresentableItem
 import com.aldikitta.ui.theme.spacing
 
@@ -30,7 +31,7 @@ import com.aldikitta.ui.theme.spacing
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun LocalResultMovieItem(
-    presentable: MovieEntity,
+    presentable: PresentableMovie,
     modifier: Modifier = Modifier,
     showTitle: Boolean = true,
     onClick: (() -> Unit)? = null
@@ -51,7 +52,7 @@ fun LocalResultMovieItem(
             ) {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(presentable.fullLocalPosterPath)
+                        .data(presentable.fullPosterPath)
                         .crossfade(true)
                         .build(),
                     contentDescription = presentable.title,

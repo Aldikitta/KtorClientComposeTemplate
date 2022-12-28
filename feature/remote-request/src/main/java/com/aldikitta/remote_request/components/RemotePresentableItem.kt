@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.GraphicsLayerScope
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
-import com.aldikitta.data.model.PresentableItemState
+import com.aldikitta.remote_request.PresentableRemoteItemState
 import com.aldikitta.ui.response.ErrorPresentableItem
 import com.aldikitta.ui.response.LoadingPresentableItem
 import com.aldikitta.ui.theme.Size
@@ -19,7 +19,7 @@ import com.aldikitta.ui.theme.sizes
 
 @Composable
 fun RemotePresentableItem(
-    presentableState: PresentableItemState,
+    presentableState: PresentableRemoteItemState,
     modifier: Modifier = Modifier,
     size: Size = MaterialTheme.sizes.presentableItemSmall,
     selected: Boolean = false,
@@ -41,17 +41,17 @@ fun RemotePresentableItem(
         ) else null
     ) {
         when (presentableState) {
-            is PresentableItemState.Loading -> {
+            is PresentableRemoteItemState.Loading -> {
                 LoadingPresentableItem(
                     modifier = Modifier.fillMaxSize()
                 )
             }
-            is PresentableItemState.Error -> {
+            is PresentableRemoteItemState.Error -> {
                 ErrorPresentableItem(
                     modifier = Modifier.fillMaxSize()
                 )
             }
-            is PresentableItemState.Result -> {
+            is PresentableRemoteItemState.Result -> {
                 RemoteResultMovieItem(
                     modifier = Modifier.fillMaxSize(),
                     presentable = presentableState.movie,

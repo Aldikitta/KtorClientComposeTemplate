@@ -11,8 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.GraphicsLayerScope
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
-import com.aldikitta.data.model.PresentableItemLocalState
-import com.aldikitta.data.model.PresentableItemState
+import com.aldikitta.local_request.PresentableLocalItemState
 import com.aldikitta.ui.response.ErrorPresentableItem
 import com.aldikitta.ui.response.LoadingPresentableItem
 import com.aldikitta.ui.theme.Size
@@ -20,7 +19,7 @@ import com.aldikitta.ui.theme.sizes
 
 @Composable
 fun LocalPresentableItem(
-    presentableState: PresentableItemLocalState,
+    presentableState: PresentableLocalItemState,
     modifier: Modifier = Modifier,
     size: Size = MaterialTheme.sizes.presentableItemSmall,
     selected: Boolean = false,
@@ -42,17 +41,17 @@ fun LocalPresentableItem(
         ) else null
     ) {
         when (presentableState) {
-            is PresentableItemLocalState.Loading -> {
+            is PresentableLocalItemState.Loading -> {
                 LoadingPresentableItem(
                     modifier = Modifier.fillMaxSize()
                 )
             }
-            is PresentableItemLocalState.Error -> {
+            is PresentableLocalItemState.Error -> {
                 ErrorPresentableItem(
                     modifier = Modifier.fillMaxSize()
                 )
             }
-            is PresentableItemLocalState.Result -> {
+            is PresentableLocalItemState.Result -> {
                 LocalResultMovieItem(
                     modifier = Modifier.fillMaxSize(),
                     presentable = presentableState.movie,
