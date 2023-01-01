@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntOffset
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import com.aldikitta.data.model.DetailPresentableMovie
 import com.aldikitta.data.model.Movie
 import com.aldikitta.remote_request.PresentableRemoteItemState
 import com.aldikitta.ui.MovplayScrollToTopButton
@@ -33,7 +34,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun RemotePresentableSection(
-    state: LazyPagingItems<out Movie>,
+    state: LazyPagingItems<out DetailPresentableMovie>,
     modifier: Modifier = Modifier,
     gridState: LazyGridState = rememberLazyGridState(),
     showRefreshLoading: Boolean = true,

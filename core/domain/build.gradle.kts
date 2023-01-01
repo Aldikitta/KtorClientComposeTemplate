@@ -9,7 +9,7 @@ android {
 
 dependencies {
     implementation(project(":core:data"))
-//    implementation(libs.androidx.core.core.ktx)
+    implementation(libs.org.jetbrains.kotlin.kotlin.stdlib)
     implementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.core.jvm)
 
     //Compose-Paging

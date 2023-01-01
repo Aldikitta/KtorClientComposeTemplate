@@ -30,6 +30,7 @@ import com.aldikitta.ui.util.refreshAll
 @Composable
 fun RemoteScreen(
     navController: NavController,
+    onMovieClicked: (Int) -> Unit,
     viewModel: RemoteViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -37,17 +38,20 @@ fun RemoteScreen(
 
     RemoteScreenContent(
         uiState = uiState,
-        onBackClicked = onBackClicked
+        onBackClicked = onBackClicked,
+        onMovieClicked = onMovieClicked
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class,
+@OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class,
     ExperimentalMaterialApi::class
 )
 @Composable
 fun RemoteScreenContent(
     uiState: RemoteScreenUIState,
     onBackClicked: () -> Unit,
+    onMovieClicked: (Int) -> Unit,
 ) {
     val popularMovies = uiState.remoteMovieUIState.popular.collectAsLazyPagingItems()
 
@@ -92,6 +96,7 @@ fun RemoteScreenContent(
                     modifier = Modifier.fillMaxSize(),
                     state = popularMovies,
                     gridState = gridState,
+                    onPresentableClick = onMovieClicked,
                     contentPadding = PaddingValues(
                         top = MaterialTheme.spacing.medium,
                         start = MaterialTheme.spacing.small,

@@ -12,7 +12,7 @@ interface MoviesApi {
     ): MovieResponse
 
     suspend fun getMovieDetails(
-        movieId: String,
+        movieId: Int,
         language: String = ContentLanguage.default.languageCode
     ): MovieDetail
 }

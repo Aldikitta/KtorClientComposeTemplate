@@ -39,6 +39,7 @@ android {
 dependencies {
     implementation(project(":feature:remote-request"))
     implementation(project(":feature:local-request"))
+    implementation(project(":feature:movie_detail"))
     implementation(project(":ui"))
     implementation(libs.androidx.core.core.ktx)
     implementation(libs.androidx.lifecycle.lifecycle.runtime.ktx)

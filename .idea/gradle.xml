@@ -30,6 +30,7 @@
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/local-request" />
+            <option value="$PROJECT_DIR$/feature/movie_detail" />
             <option value="$PROJECT_DIR$/feature/remote-request" />
             <option value="$PROJECT_DIR$/ui" />
           </set>

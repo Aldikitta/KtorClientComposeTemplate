@@ -6,7 +6,7 @@ import androidx.compose.runtime.Stable
 interface PresentableMovie {
     val id: Int
     val title: String
-    val posterPath: String
+    val posterPath: String?
     val fullPosterPath: String
         get() = "https://image.tmdb.org/t/p/original/$posterPath"
 }

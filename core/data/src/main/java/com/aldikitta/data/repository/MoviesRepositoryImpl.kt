@@ -8,12 +8,15 @@ import com.aldikitta.data.local.AppDatabase
 import com.aldikitta.data.local.model.MovieEntity
 import com.aldikitta.data.model.ContentLanguage
 import com.aldikitta.data.model.Movie
+import com.aldikitta.data.model.MovieDetail
 import com.aldikitta.data.paging.local.MovieResponsePagingMediator
 import com.aldikitta.data.paging.remote.MovieResponsePagingDataSource
 import com.aldikitta.data.remote.api.movie.MoviesApi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -48,4 +51,12 @@ class MoviesRepositoryImpl @Inject constructor(
                 appDatabase.moviesDao().getAllMovies(language = contentLanguage.languageCode)
             }
         ).flow.flowOn(defaultDispatcher)
+
+    override fun movieDetails(movieId: Int, language: String): Flow<MovieDetail> = flow {
+        while (true){
+            val movieDetail = moviesApi.getMovieDetails(movieId, language)
+            emit(movieDetail)
+            delay(5000L)
+        }
+    }
 }

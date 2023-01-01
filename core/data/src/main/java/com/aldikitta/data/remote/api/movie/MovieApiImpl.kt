@@ -25,11 +25,12 @@ class MoviesApiImpl @Inject constructor(
     }
 
     override suspend fun getMovieDetails(
-        movieId: String,
+        movieId: Int,
         language: String
     ): MovieDetail {
-        return httpClient.get("movie/{movie_id}") {
-
+        return httpClient.get("movie/$movieId") {
+//            parameter("movie_id", movieId)
+            parameter("language", language)
         }.body()
     }
 }

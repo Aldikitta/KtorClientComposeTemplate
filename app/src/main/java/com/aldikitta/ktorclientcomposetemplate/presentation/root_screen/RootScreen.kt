@@ -10,6 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.aldikitta.ktorclientcomposetemplate.R
 import com.aldikitta.ktorclientcomposetemplate.navigation.Screen
+import com.aldikitta.remote_request.navigation.navigateToRemoteGraph
 
 @Composable
 fun RootScreen(
@@ -30,9 +31,10 @@ fun RootScreen(
                 Text(text = stringResource(id = R.string.local_screen))
             }
             Button(onClick = {
-                navController.navigate(route = Screen.RemoteScreen.route) {
-
-                }
+                navController.navigateToRemoteGraph()
+//                navController.navigate(route = Screen.RemoteScreen.route) {
+//
+//                }
             }) {
                 Text(text = stringResource(id = R.string.remote_screen))
             }
