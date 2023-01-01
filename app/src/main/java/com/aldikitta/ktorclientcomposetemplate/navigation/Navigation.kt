@@ -29,15 +29,8 @@ fun Navigation(
         }
         remoteGraph(
             navController,
-            navigateToMovieDetail = { movieid ->
-                navController.navigateToMovieDetail(movieid)
-            },
             nestedGraphs = {
-                movieDetailScreen(
-                    onBackClicked = {
-                        navController.popBackStack()
-                    }
-                )
+                movieDetailScreen()
             }
         )
     }

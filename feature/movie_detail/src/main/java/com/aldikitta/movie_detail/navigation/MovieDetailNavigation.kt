@@ -20,22 +20,21 @@ internal class DetailArgs(savedStateHandle: SavedStateHandle) {
     var rateId: Int? = savedStateHandle.get<Int>(movieIdArg)
 }
 
-fun NavController.navigateToMovieDetail(movieId: Int){
+fun NavController.navigateToMovieDetail(movieId: Int) {
     val encodedId = Uri.encode(movieId.toString())
     this.navigate("movie_detail_route/$encodedId")
 }
 
 fun NavGraphBuilder.movieDetailScreen(
-    onBackClicked: () -> Unit
-){
+) {
     composable(
         route = "movie_detail_route/{$movieIdArg}",
         arguments = listOf(
-            navArgument(movieIdArg){
+            navArgument(movieIdArg) {
                 type = NavType.IntType
             }
         )
-    ){
+    ) {
         MovieDetailScreen()
     }
 }

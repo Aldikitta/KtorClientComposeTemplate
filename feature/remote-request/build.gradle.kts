@@ -11,6 +11,7 @@ android {
 dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
+    implementation(project(":feature:movie_detail"))
     implementation(project(":ui"))
 
     implementation(libs.androidx.activity.activity.compose)

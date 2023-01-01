@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.aldikitta.movie_detail.navigation.navigateToMovieDetail
 import com.aldikitta.remote_request.RemoteScreen
 
 private const val remoteGraphRoutePattern = "remote_screen_graph"
@@ -16,7 +17,6 @@ fun NavController.navigateToRemoteGraph(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.remoteGraph(
     navController: NavController,
-    navigateToMovieDetail: (Int) -> Unit,
     nestedGraphs: NavGraphBuilder.() -> Unit
 ) {
     navigation(
@@ -26,7 +26,9 @@ fun NavGraphBuilder.remoteGraph(
         composable(route = remoteRoute){
             RemoteScreen(
                 navController = navController,
-                onMovieClicked = navigateToMovieDetail
+                onMovieClicked = {movieId ->
+                    navController.navigateToMovieDetail(movieId)
+                }
             )
         }
         nestedGraphs()

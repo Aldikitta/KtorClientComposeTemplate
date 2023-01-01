@@ -46,7 +46,9 @@ object AppModule {
                     prettyPrint = true
                     isLenient = true
                     ignoreUnknownKeys = true
-                    explicitNulls = false
+//                    explicitNulls = true
+//                    encodeDefaults = false
+
                 })
                 engine {
                     connectTimeout = 10_000
