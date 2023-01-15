@@ -3,4 +3,8 @@
     <string name="local_screen">Local Screen</string>
     <string name="remote_screen">Remote Screen</string>
     <string name="popular">Popular</string>
+    <string name="tab_inbox">Inbox</string>
+    <string name="local">Local</string>
+    <string name="remote">Remote</string>
+    <string name="not_connected">⚠️ You aren’t connected to the internet</string>
 </resources>

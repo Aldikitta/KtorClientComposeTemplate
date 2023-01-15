@@ -2,6 +2,7 @@ plugins {
     id("aldikitta.android.library")
     id("kotlinx-serialization")
     id("aldikitta.android.hilt")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {

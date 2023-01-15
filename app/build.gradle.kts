@@ -2,6 +2,7 @@ plugins {
     id("aldikitta.android.application")
     id("aldikitta.android.application.compose")
     id("aldikitta.android.hilt")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -38,15 +39,20 @@ android {
 
 dependencies {
     implementation(project(":feature:remote-request"))
+    implementation(project(":core:data"))
     implementation(project(":feature:local-request"))
     implementation(project(":feature:movie_detail"))
     implementation(project(":ui"))
     implementation(libs.androidx.core.core.ktx)
     implementation(libs.androidx.lifecycle.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.activity.compose)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.material.icons.extended)
+    implementation(libs.androidx.compose.material3.window)
+    implementation(libs.androidx.tracing.ktx)
 
 //    //Compose-Paging
 //    implementation(libs.androidx.paging.paging.compose)

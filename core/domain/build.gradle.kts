@@ -1,7 +1,8 @@
 plugins {
     id("aldikitta.android.library")
     id("aldikitta.android.hilt")
- }
+    id("org.jetbrains.kotlin.android")
+}
 
 android {
     namespace = "com.aldikitta.domain"

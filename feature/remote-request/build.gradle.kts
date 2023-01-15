@@ -2,6 +2,7 @@ plugins {
     id("aldikitta.android.library")
     id("aldikitta.android.library.compose")
     id("aldikitta.android.hilt")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {

@@ -3,6 +3,9 @@ package com.aldikitta.di
 import android.util.Log
 import com.aldikitta.data.remote.api.movie.MoviesApi
 import com.aldikitta.data.remote.api.movie.MoviesApiImpl
+import com.aldikitta.util.ConnectivityManagerNetworkMonitor
+import com.aldikitta.util.NetworkMonitor
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -86,4 +89,5 @@ object AppModule {
     @Singleton
     @Provides
     fun getMoviesApiImpl(impl: MoviesApiImpl): MoviesApi = impl
+
 }
