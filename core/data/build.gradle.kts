@@ -26,6 +26,14 @@ dependencies {
     implementation(libs.io.ktor.ktor.serialization.kotlinx.json)
     implementation(libs.io.ktor.ktor.client.logging.jvm)
 
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation("com.github.chuckerteam.chucker:library:3.5.2")
+    implementation("com.squareup.moshi:moshi:1.14.0")
+
+
     //Dagger-Hilt
     implementation(libs.javax.inject.javax.inject)
 
